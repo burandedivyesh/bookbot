@@ -3,11 +3,12 @@
 
 # we would also need the path to the file
 
+import sys
 from stats import readFileText
 from stats import countWords
 from stats import countLetters
 
-pathToBook = "/home/thatguy/Development/workspace/github.com/bookbot/books/frankenstein.txt"
+pathToBook = "/home/thatguy/Development/workspace/github.com/bookbot/books/" + sys.argv[1] 
 
 def printReport():
     print("============ BOOKBOT ============")
