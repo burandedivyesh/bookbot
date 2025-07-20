@@ -1,26 +1,31 @@
+# 1. We need to fix naming conventions for the functions and variables
+# 2. We need to fix any false logic
+# 3. We need to fix 
 
-# we are creating a separate function to read the contents of the file
+
+
 def readFileText(filePath):
+    """function to read the parse the file as string"""
     with open(filePath) as f:
         fileContents = f.read()
-
     return fileContents
 
 
 def countWords(fileText):
-    Words = fileText.strip().split()
-    #we are using the split method to split the words using the whitespaces
+    """function to count the number of words"""
+    Words = fileText.split()
     return len(Words)
 
 def countLetters(fileText):
+    """function to count number of characters in the file contents"""
     letterCount = dict()
     letters = list(fileText.lower())
     for i in set(letters):
         letterCount[i] = fileText.lower().count(i)
     #print(letterCount)
-    return sortingDict(letterCount)
+    return wordList(letterCount)
 
-def sortingDict(letterCount):
+def wordList(letterCount):
     sortedList = []
     for k,v in letterCount.items():
         temp_dict = {}

@@ -1,8 +1,4 @@
-#we gonna need a with block to handle the file,
-#with block helps us to open the file and closes automatically when the block is exited
-
-# we would also need the path to the file
-
+# Importing functions from our stats.py file
 import sys
 from stats import readFileText
 from stats import countWords
@@ -10,26 +6,21 @@ from stats import countLetters
 
 pathToBook = "/home/thatguy/Development/workspace/github.com/bookbot/books/" + sys.argv[1] 
 
-def printReport():
-    print("============ BOOKBOT ============")
-    print("Analyzing book found at books/frankenstein.txt...")
-    print("----------- Word Count ----------")
-
 def main():
     fileText = readFileText(pathToBook)
-    #print(countWords(fileText), "words found in the document")
-    #print(countLetters(fileText))
-    printReport()
+    print("============ BOOKBOT ============")
+    print(f"Analyzing book found at books/{sys.argv[1]}...")
+    print("----------- Word Count ----------")
     print(f'Found {countWords(fileText)} total words')
     print("--------- Character Count -------")
-    finalCounts = countLetters(fileText)
+    charCounts = countLetters(fileText)
     
+    #sort function to given as key for sorting out the list
     def sort_on(items):
         return items['nums']
+    charCounts.sort(reverse=True,key = sort_on)
 
-    finalCounts.sort(reverse=True,key = sort_on)
-
-    for i in finalCounts:
+    for i in charCounts:
         print(f'{i["char"]}: {i["nums"]}')
     print("============= END ===============")
 
