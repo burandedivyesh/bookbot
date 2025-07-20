@@ -1,12 +1,31 @@
-def count_words(content):
-    return(len(content.split()))
 
-def count_characters(content):
-    count = {}
-    for letter in set(content.lower()):
-        count[letter] = content.lower().count(letter)
-    return count
+# we are creating a separate function to read the contents of the file
+def readFileText(filePath):
+    with open(filePath) as f:
+        fileContents = f.read()
 
-def sort_on(items):
-    return count_characters
+    return fileContents
+
+
+def countWords(fileText):
+    Words = fileText.strip().split()
+    #we are using the split method to split the words using the whitespaces
+    return len(Words)
+
+def countLetters(fileText):
+    letterCount = dict()
+    letters = list(fileText.lower())
+    for i in set(letters):
+        letterCount[i] = fileText.lower().count(i)
+    #print(letterCount)
+    return sortingDict(letterCount)
+
+def sortingDict(letterCount):
+    sortedList = []
+    for k,v in letterCount.items():
+        temp_dict = {}
+        temp_dict["char"] = k
+        temp_dict["nums"] = v
+        sortedList.append(temp_dict)
+    return sortedList
 

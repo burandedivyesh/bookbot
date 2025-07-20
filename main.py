@@ -1,20 +1,40 @@
-from stats import count_words
-from stats import count_characters
+#we gonna need a with block to handle the file,
+#with block helps us to open the file and closes automatically when the block is exited
 
-path_to_frankenstein = "/home/thatguy/Development/workspace/github.com/bookbot/books/frankenstein.txt"
+# we would also need the path to the file
 
-def get_book_text(filepath):
-    with open(filepath) as f:
-        file_contents = f.read()
-        return file_contents
+from stats import readFileText
+from stats import countWords
+from stats import countLetters
 
+pathToBook = "/home/thatguy/Development/workspace/github.com/bookbot/books/frankenstein.txt"
+
+def printReport():
+    print("============ BOOKBOT ============")
+    print("Analyzing book found at books/frankenstein.txt...")
+    print("----------- Word Count ----------")
 
 def main():
-    print(get_book_text(path_to_frankenstein))
-    words = count_words(get_book_text(path_to_frankenstein))
-    print(words,"words found in the document")
-
-    print(count_characters(get_book_text(path_to_frankenstein)))
+    fileText = readFileText(pathToBook)
+    #print(countWords(fileText), "words found in the document")
+    #print(countLetters(fileText))
+    printReport()
+    print(f'Found {countWords(fileText)} total words')
+    print("--------- Character Count -------")
+    finalCounts = countLetters(fileText)
     
+    def sort_on(items):
+        return items['nums']
+
+    finalCounts.sort(reverse=True,key = sort_on)
+
+    for i in finalCounts:
+        print(f'{i["char"]}: {i["nums"]}')
+    print("============= END ===============")
+
 main()
+
+#we have made a new function to read the contetns of the file and we can use this function anywhere
+#to read the contetns of the file
+
 
